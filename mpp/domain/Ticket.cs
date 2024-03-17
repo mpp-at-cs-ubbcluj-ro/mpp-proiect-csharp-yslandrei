@@ -2,14 +2,14 @@ namespace mpp.domain
 {
     public class Ticket : Entity<long>
     {
-        private long concertId;
+        private Concert concert;
         private string buyer;
         private int seats;
 
-        public long ConcertId
+        public long Concert
         {
-            get { return concertId; }
-            set { concertId = value; }
+            get { return concert; }
+            set { concert = value; }
         }
 
         public string Buyer
@@ -24,9 +24,9 @@ namespace mpp.domain
             set { seats = value; }
         }
 
-        public Ticket(long id, long concertId, string buyer, int seats) : base(id)
+        public Ticket(long id, Concert concert, string buyer, int seats) : base(id)
         {
-            this.concertId = concertId;
+            this.concert = concert;
             this.buyer = buyer;
             this.seats = seats;
         }
@@ -40,12 +40,12 @@ namespace mpp.domain
                 return false;
 
             Ticket ticket = (Ticket)obj;
-            return seats == ticket.seats && concertId == ticket.concertId && buyer == ticket.buyer;
+            return seats == ticket.seats && concert == ticket.concert && buyer == ticket.buyer;
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(concertId, buyer, seats);
+            return HashCode.Combine(concert, buyer, seats);
         }
     }
 }
